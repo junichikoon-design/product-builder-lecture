@@ -391,6 +391,54 @@
           <div class="empty" id="emptyState">아직 등록된 내역이 없습니다.</div>
         </div>
       </section>
+
+      <section class="panel">
+        <h2>제휴 문의</h2>
+        <form
+          action="https://formspree.io/f/xgolrean"
+          method="POST"
+          id="partnerForm"
+        >
+          <div class="row">
+            <div>
+              <label for="partnerName">이름</label>
+              <input
+                id="partnerName"
+                name="name"
+                placeholder="홍길동"
+                required
+              />
+            </div>
+            <div>
+              <label for="partnerEmail">이메일</label>
+              <input
+                id="partnerEmail"
+                name="email"
+                type="email"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label for="partnerCompany">회사</label>
+            <input id="partnerCompany" name="company" placeholder="회사명" />
+          </div>
+          <div>
+            <label for="partnerMessage">문의 내용</label>
+            <textarea
+              id="partnerMessage"
+              name="message"
+              placeholder="협업 제안이나 문의 내용을 적어주세요."
+              required
+            ></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit" class="primary">문의 보내기</button>
+            <button type="reset" class="secondary">초기화</button>
+          </div>
+        </form>
+      </section>
     </div>
 
     <script>
