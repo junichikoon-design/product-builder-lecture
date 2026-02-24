@@ -100,6 +100,15 @@
         font-weight: 600;
       }
 
+      .theme-toggle .icon {
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
       .summary {
         display: grid;
         gap: 16px;
@@ -189,7 +198,11 @@
         cursor: pointer;
       }
 
-      html[data-theme="light"] button {
+      button.primary {
+        color: #08222e;
+      }
+
+      html[data-theme="light"] button.primary {
         color: #ffffff;
       }
 
@@ -288,7 +301,8 @@
           <p>수입과 지출을 한 곳에서 관리하세요.</p>
         </div>
         <button class="theme-toggle" id="themeToggle" type="button">
-          다크 모드
+          <span class="icon" id="themeIcon" aria-hidden="true">🌙</span>
+          <span id="themeLabel">다크 모드</span>
         </button>
       </header>
 
@@ -350,8 +364,10 @@
               <textarea id="memo" name="memo" placeholder="선택 입력"></textarea>
             </div>
             <div class="actions">
-              <button type="submit">추가</button>
-              <button type="button" class="secondary" id="resetBtn">초기화</button>
+              <button type="submit" class="primary">추가</button>
+              <button type="button" class="secondary" id="resetBtn">
+                초기화
+              </button>
             </div>
           </form>
         </div>
@@ -391,6 +407,8 @@
       const sortBy = document.getElementById("sortBy");
       const searchInput = document.getElementById("search");
       const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const themeLabel = document.getElementById("themeLabel");
 
       const currency = new Intl.NumberFormat("ko-KR");
 
@@ -403,7 +421,9 @@
 
       const setTheme = (theme) => {
         document.documentElement.setAttribute("data-theme", theme);
-        themeToggle.textContent = theme === "dark" ? "다크 모드" : "화이트 모드";
+        const isDark = theme === "dark";
+        themeIcon.textContent = isDark ? "🌙" : "☀️";
+        themeLabel.textContent = isDark ? "다크 모드" : "화이트 모드";
         localStorage.setItem(themeStorageKey, theme);
       };
 
@@ -552,7 +572,9 @@
         form.category.value = entry.category || "";
         form.memo.value = entry.memo || "";
         form.dataset.editing = id;
-        form.querySelector("button[type='submit']").textContent = "수정 저장";
+        form
+          .querySelector("button[type='submit']")
+          .textContent = "수정 저장";
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
