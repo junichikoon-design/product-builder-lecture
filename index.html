@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>가계부</title>
+    <style>
+      :root {
+        --bg: #0e141b;
+        --panel: #151f2b;
+        --panel-2: #1b2a3a;
+        --text: #e8f0f7;
+        --muted: #9fb3c8;
+        --accent: #64d6ff;
+        --accent-2: #8bffb4;
+        --danger: #ff6b6b;
+        --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo",
+          "Malgun Gothic", system-ui, sans-serif;
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 10% 10%, #20324a, var(--bg));
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+        display: grid;
+        gap: 24px;
+      }
+
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      header h1 {
+        font-size: 28px;
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+
+      header p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .summary {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .card {
+        background: var(--panel);
+        border-radius: 16px;
+        padding: 18px 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .card h3 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .card strong {
+        font-size: 22px;
+      }
+
+      .layout {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(280px, 360px) 1fr;
+      }
+
+      .panel {
+        background: var(--panel);
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+      }
+
+      label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        background: var(--panel-2);
+        color: var(--text);
+        font-size: 14px;
+      }
+
+      textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .row {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+
+      button {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 14px;
+        background: var(--accent);
+        color: #08222e;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .filters {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .item {
+        background: var(--panel-2);
+        border-radius: 14px;
+        padding: 14px 16px;
+        display: grid;
+        gap: 6px;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+
+      .item h4 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .item p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(100, 214, 255, 0.15);
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .amount {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .amount.expense {
+        color: var(--danger);
+      }
+
+      .amount.income {
+        color: var(--accent-2);
+      }
+
+      .empty {
+        text-align: center;
+        color: var(--muted);
+        padding: 40px 0;
+      }
+
+      .item-actions {
+        display: flex;
+        gap: 6px;
+      }
+
+      .item-actions button {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>가계부</h1>
+        <p>수입과 지출을 한 곳에서 관리하세요.</p>
+      </header>
+
+      <section class="summary">
+        <div class="card">
+          <h3>이번 달 수입</h3>
+          <strong id="incomeTotal">0원</strong>
+        </div>
+        <div class="card">
+          <h3>이번 달 지출</h3>
+          <strong id="expenseTotal">0원</strong>
+        </div>
+        <div class="card">
+          <h3>잔액</h3>
+          <strong id="balanceTotal">0원</strong>
+        </div>
+      </section>
+
+      <section class="layout">
+        <div class="panel">
+          <h2>내역 추가</h2>
+          <form id="entryForm">
+            <div>
+              <label for="title">내용</label>
+              <input id="title" name="title" placeholder="예: 점심, 급여" required />
+            </div>
+            <div class="row">
+              <div>
+                <label for="amount">금액</label>
+                <input
+                  id="amount"
+                  name="amount"
+                  type="number"
+                  min="0"
+                  step="100"
+                  required
+                />
+              </div>
+              <div>
+                <label for="type">구분</label>
+                <select id="type" name="type">
+                  <option value="expense">지출</option>
+                  <option value="income">수입</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="date">날짜</label>
+                <input id="date" name="date" type="date" required />
+              </div>
+              <div>
+                <label for="category">카테고리</label>
+                <input id="category" name="category" placeholder="예: 식비" />
+              </div>
+            </div>
+            <div>
+              <label for="memo">메모</label>
+              <textarea id="memo" name="memo" placeholder="선택 입력"></textarea>
+            </div>
+            <div class="actions">
+              <button type="submit">추가</button>
+              <button type="button" class="secondary" id="resetBtn">초기화</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h2>거래 내역</h2>
+          <div class="filters">
+            <input id="search" placeholder="검색" />
+            <select id="filterType">
+              <option value="all">전체</option>
+              <option value="income">수입</option>
+              <option value="expense">지출</option>
+            </select>
+            <select id="sortBy">
+              <option value="latest">최신순</option>
+              <option value="oldest">과거순</option>
+              <option value="amount">금액순</option>
+            </select>
+          </div>
+          <div class="list" id="entryList"></div>
+          <div class="empty" id="emptyState">아직 등록된 내역이 없습니다.</div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "ledgerEntries";
+      const form = document.getElementById("entryForm");
+      const list = document.getElementById("entryList");
+      const emptyState = document.getElementById("emptyState");
+      const incomeTotal = document.getElementById("incomeTotal");
+      const expenseTotal = document.getElementById("expenseTotal");
+      const balanceTotal = document.getElementById("balanceTotal");
+      const resetBtn = document.getElementById("resetBtn");
+      const filterType = document.getElementById("filterType");
+      const sortBy = document.getElementById("sortBy");
+      const searchInput = document.getElementById("search");
+
+      const currency = new Intl.NumberFormat("ko-KR");
+
+      const today = new Date();
+      const offset = today.getTimezoneOffset();
+      const localDate = new Date(today.getTime() - offset * 60000);
+      document.getElementById("date").value = localDate
+        .toISOString()
+        .slice(0, 10);
+
+      const loadEntries = () => {
+        try {
+          const stored = localStorage.getItem(storageKey);
+          return stored ? JSON.parse(stored) : [];
+        } catch (error) {
+          return [];
+        }
+      };
+
+      const saveEntries = (entries) => {
+        localStorage.setItem(storageKey, JSON.stringify(entries));
+      };
+
+      const formatAmount = (amount) => `${currency.format(amount)}원`;
+
+      const renderSummary = (entries) => {
+        const income = entries
+          .filter((entry) => entry.type === "income")
+          .reduce((sum, entry) => sum + entry.amount, 0);
+        const expense = entries
+          .filter((entry) => entry.type === "expense")
+          .reduce((sum, entry) => sum + entry.amount, 0);
+        const balance = income - expense;
+
+        incomeTotal.textContent = formatAmount(income);
+        expenseTotal.textContent = formatAmount(expense);
+        balanceTotal.textContent = formatAmount(balance);
+      };
+
+      const renderList = (entries) => {
+        list.innerHTML = "";
+        if (!entries.length) {
+          emptyState.style.display = "block";
+          return;
+        }
+        emptyState.style.display = "none";
+
+        entries.forEach((entry) => {
+          const item = document.createElement("div");
+          item.className = "item";
+
+          const info = document.createElement("div");
+          const title = document.createElement("h4");
+          title.textContent = entry.title;
+          const meta = document.createElement("p");
+          const category = entry.category ? ` · ${entry.category}` : "";
+          meta.textContent = `${entry.date}${category}`;
+          const badge = document.createElement("span");
+          badge.className = "badge";
+          badge.textContent = entry.type === "income" ? "수입" : "지출";
+
+          info.appendChild(title);
+          info.appendChild(meta);
+          info.appendChild(badge);
+
+          const amount = document.createElement("div");
+          amount.className = `amount ${entry.type}`;
+          amount.textContent = formatAmount(entry.amount);
+
+          const actions = document.createElement("div");
+          actions.className = "item-actions";
+          const editBtn = document.createElement("button");
+          editBtn.className = "secondary";
+          editBtn.textContent = "수정";
+          editBtn.addEventListener("click", () => handleEdit(entry.id));
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "삭제";
+          deleteBtn.addEventListener("click", () => handleDelete(entry.id));
+          actions.appendChild(editBtn);
+          actions.appendChild(deleteBtn);
+
+          const right = document.createElement("div");
+          right.appendChild(amount);
+          right.appendChild(actions);
+
+          item.appendChild(info);
+          item.appendChild(right);
+          list.appendChild(item);
+        });
+      };
+
+      const applyFilters = (entries) => {
+        const keyword = searchInput.value.trim().toLowerCase();
+        let filtered = entries.filter((entry) =>
+          [entry.title, entry.memo, entry.category]
+            .filter(Boolean)
+            .some((value) => value.toLowerCase().includes(keyword))
+        );
+
+        if (filterType.value !== "all") {
+          filtered = filtered.filter((entry) => entry.type === filterType.value);
+        }
+
+        if (sortBy.value === "latest") {
+          filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        } else if (sortBy.value === "oldest") {
+          filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        } else {
+          filtered.sort((a, b) => b.amount - a.amount);
+        }
+
+        return filtered;
+      };
+
+      const refresh = () => {
+        const entries = loadEntries();
+        renderSummary(entries);
+        renderList(applyFilters(entries));
+      };
+
+      const resetForm = () => {
+        form.reset();
+        document.getElementById("date").value = localDate
+          .toISOString()
+          .slice(0, 10);
+      };
+
+      const handleEdit = (id) => {
+        const entries = loadEntries();
+        const entry = entries.find((item) => item.id === id);
+        if (!entry) return;
+        form.title.value = entry.title;
+        form.amount.value = entry.amount;
+        form.type.value = entry.type;
+        form.date.value = entry.date;
+        form.category.value = entry.category || "";
+        form.memo.value = entry.memo || "";
+        form.dataset.editing = id;
+        form.querySelector("button[type='submit']").textContent = "수정 저장";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      const handleDelete = (id) => {
+        const entries = loadEntries().filter((entry) => entry.id !== id);
+        saveEntries(entries);
+        refresh();
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const entries = loadEntries();
+        const payload = {
+          id: form.dataset.editing || crypto.randomUUID(),
+          title: form.title.value.trim(),
+          amount: Number(form.amount.value),
+          type: form.type.value,
+          date: form.date.value,
+          category: form.category.value.trim(),
+          memo: form.memo.value.trim(),
+        };
+
+        if (!payload.title || !payload.amount || !payload.date) return;
+
+        const updated = form.dataset.editing
+          ? entries.map((entry) =>
+              entry.id === payload.id ? payload : entry
+            )
+          : [payload, ...entries];
+
+        saveEntries(updated);
+        delete form.dataset.editing;
+        form.querySelector("button[type='submit']").textContent = "추가";
+        resetForm();
+        refresh();
+      });
+
+      resetBtn.addEventListener("click", () => {
+        delete form.dataset.editing;
+        form.querySelector("button[type='submit']").textContent = "추가";
+        resetForm();
+      });
+
+      [filterType, sortBy, searchInput].forEach((input) =>
+        input.addEventListener("input", refresh)
+      );
+
+      refresh();
+    </script>
+  </body>
+</html>
