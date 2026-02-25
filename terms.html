@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Expense Tracker - Terms of Service</title>
     <meta name="description" content="Read the terms for using Expense Tracker and your responsibilities for local data." />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="keywords" content="expense tracker, terms of service, user agreement, browser data" />
     <link rel="canonical" href="https://www.fosaveyallmoney.work/terms.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    />
     <meta property="og:title" content="Expense Tracker - Terms of Service" />
     <meta property="og:description" content="Read the terms for using Expense Tracker and your responsibilities for local data." />
     <meta property="og:type" content="article" />
@@ -19,20 +25,39 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <style>
       :root {
-        --bg: #f7f7f4;
-        --panel: #ffffff;
-        --text: #1b1f24;
-        --muted: #5c6670;
-        --border: rgba(27, 31, 36, 0.12);
-        --accent: #1f8fc7;
+        --bg: #0e141b;
+        --panel: #151f2b;
+        --text: #eef4fb;
+        --muted: #9fb3c8;
+        --border: rgba(255, 255, 255, 0.16);
+        --accent: #64d6ff;
+        --bg-gradient: radial-gradient(
+            900px 600px at 10% 10%,
+            rgba(85, 151, 206, 0.35),
+            transparent 65%
+          ),
+          radial-gradient(
+            900px 600px at 90% 0%,
+            rgba(139, 255, 180, 0.2),
+            transparent 70%
+          ),
+          radial-gradient(
+            1200px 800px at 20% 80%,
+            rgba(42, 72, 112, 0.45),
+            transparent 70%
+          ),
+          var(--bg);
+        --font-body: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+        --font-display: "Fraunces", "Times New Roman", serif;
       }
 
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        font-family: "Inter", "Segoe UI", Arial, system-ui, sans-serif;
-        background: var(--bg);
+        font-family: var(--font-body);
+        background: var(--bg-gradient);
         color: var(--text);
+        min-height: 100vh;
       }
       .container {
         max-width: 820px;
@@ -41,14 +66,34 @@
         display: grid;
         gap: 20px;
       }
+      h1, h2 { font-family: var(--font-display); }
       h1 { margin: 0; font-size: 28px; }
       h2 { margin: 0 0 8px; font-size: 18px; }
       p { margin: 0; color: var(--muted); line-height: 1.7; }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+        display: grid;
+        gap: 6px;
+      }
       .panel {
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 16px;
         padding: 18px 20px;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(100, 214, 255, 0.16);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text);
       }
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; }
@@ -76,6 +121,8 @@
         "name": "Terms of Service - Expense Tracker",
         "url": "https://www.fosaveyallmoney.work/terms.html",
         "description": "Read the terms for using Expense Tracker and your responsibilities for local data.",
+        "dateModified": "2026-02-25",
+        "datePublished": "2026-02-25",
         "inLanguage": "en",
         "isPartOf": {
           "@type": "WebSite",
@@ -108,15 +155,24 @@
         <a href="index.html">Home</a> &rsaquo; Terms of Service
       </nav>
       <h1>Terms of Service</h1>
+      <span class="tag">Last updated Feb 25, 2026</span>
       <section class="panel">
         <h2>Purpose</h2>
-        <p>Expense Tracker is a personal finance logging tool provided free of charge. By using this service, you agree to use it responsibly and at your own discretion.</p>
-        <h2>Liability</h2>
-        <p>You are responsible for maintaining backups of your own browser data. We are not liable for any data loss resulting from browser clearing, device failure, or other events.</p>
+        <p>Expense Tracker is a personal finance logging tool provided free of charge. By using it, you agree to use it responsibly and for your own tracking purposes.</p>
+        <h2>Your responsibilities</h2>
+        <ul>
+          <li>You are responsible for maintaining backups of your browser data.</li>
+          <li>You understand that clearing browser storage will remove your entries.</li>
+        </ul>
+        <h2>Acceptable use</h2>
+        <p>Do not attempt to disrupt the service, abuse the contact form, or use automated tools to overload the site.</p>
+        <h2>No financial advice</h2>
+        <p>Expense Tracker provides a record-keeping tool, not financial advice. You are responsible for your own financial decisions.</p>
         <h2>Changes</h2>
-        <p>We may update these terms as needed. Continued use of the service constitutes acceptance of the updated terms. Check this page periodically for the latest version.</p>
+        <p>We may update these terms as needed. Continued use of the service constitutes acceptance of the updated terms.</p>
       </section>
       <a href="index.html">Back to home</a>
     </main>
   </body>
 </html>
+

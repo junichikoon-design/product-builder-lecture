@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Expense Tracker - Personal Finance Ledger</title>
     <meta name="description" content="Track income and expenses, review monthly totals, and build better spending habits. All data stays in your browser." />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="keywords" content="expense tracker, personal finance, budget planner, income tracker, spending tracker, money management, free finance app" />
     <link rel="canonical" href="https://www.fosaveyallmoney.work/" />
     <link rel="alternate" type="application/rss+xml" title="Expense Tracker Updates" href="/rss.xml" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    />
     <meta property="og:title" content="Expense Tracker - Personal Finance Ledger" />
     <meta property="og:description" content="Track income and expenses, review monthly totals, and build better spending habits. All data stays in your browser." />
     <meta property="og:type" content="website" />
@@ -39,10 +45,23 @@
         --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
         --border: rgba(255, 255, 255, 0.2);
         --bg-gradient: radial-gradient(
-          1200px 800px at 10% 10%,
-          #20324a,
-          var(--bg)
-        );
+            900px 600px at 10% 10%,
+            rgba(85, 151, 206, 0.35),
+            transparent 65%
+          ),
+          radial-gradient(
+            900px 600px at 90% 0%,
+            rgba(139, 255, 180, 0.2),
+            transparent 70%
+          ),
+          radial-gradient(
+            1200px 800px at 20% 80%,
+            rgba(42, 72, 112, 0.45),
+            transparent 70%
+          ),
+          var(--bg);
+        --font-body: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+        --font-display: "Fraunces", "Times New Roman", serif;
       }
 
       html[data-theme="light"] {
@@ -57,10 +76,21 @@
         --shadow: 0 20px 40px rgba(16, 27, 40, 0.12);
         --border: rgba(26, 39, 51, 0.15);
         --bg-gradient: radial-gradient(
-          1200px 800px at 10% 10%,
-          #d7e7f5,
-          var(--bg)
-        );
+            900px 600px at 10% 10%,
+            rgba(61, 132, 182, 0.28),
+            transparent 65%
+          ),
+          radial-gradient(
+            900px 600px at 90% 0%,
+            rgba(19, 163, 107, 0.18),
+            transparent 70%
+          ),
+          radial-gradient(
+            1200px 800px at 20% 80%,
+            rgba(205, 226, 242, 0.6),
+            transparent 70%
+          ),
+          var(--bg);
       }
 
       * {
@@ -69,10 +99,17 @@
 
       body {
         margin: 0;
-        font-family: "Inter", "Segoe UI", Arial, system-ui, sans-serif;
+        font-family: var(--font-body);
         color: var(--text);
         background: var(--bg-gradient);
         min-height: 100vh;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        letter-spacing: -0.01em;
       }
 
       .container {
@@ -159,6 +196,61 @@
           rgba(139, 255, 180, 0.08)
         );
         border: 1px solid var(--border);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .hero-actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid var(--border);
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(15, 23, 31, 0.2);
+      }
+
+      .hero-visual {
+        background: var(--panel);
+        border-radius: 16px;
+        padding: 16px;
+        border: 1px solid var(--border);
+      }
+
+      .hero-visual svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .visual-caption {
+        margin: 12px 0 0;
+        font-size: 12px;
+        color: var(--muted);
       }
 
       .hero h2 {
@@ -373,6 +465,13 @@
         font-size: 20px;
       }
 
+      .section-lede {
+        margin: -4px 0 12px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
       .content-grid {
         display: grid;
         gap: 16px;
@@ -398,6 +497,22 @@
         font-size: 13px;
       }
 
+      .feature-list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        display: grid;
+        gap: 6px;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      .grid-2 {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
       .faq {
         display: grid;
         gap: 12px;
@@ -413,6 +528,24 @@
       .faq summary {
         cursor: pointer;
         font-weight: 600;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        animation: rise 0.6s ease forwards;
+      }
+
+      .reveal:nth-of-type(2) { animation-delay: 0.05s; }
+      .reveal:nth-of-type(3) { animation-delay: 0.1s; }
+      .reveal:nth-of-type(4) { animation-delay: 0.15s; }
+      .reveal:nth-of-type(5) { animation-delay: 0.2s; }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       footer {
@@ -466,6 +599,11 @@
         "url": "https://www.fosaveyallmoney.work/",
         "description": "Track income and expenses, review monthly totals, and build better spending habits.",
         "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Expense Tracker Team",
+          "url": "https://www.fosaveyallmoney.work/"
+        },
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
@@ -479,19 +617,54 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
         "name": "Expense Tracker",
         "url": "https://www.fosaveyallmoney.work/",
         "description": "Track income and expenses, review monthly totals, and build better spending habits. All data stays in your browser.",
         "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Any",
+        "operatingSystem": "Web",
         "browserRequirements": "Requires JavaScript",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
         },
-        "featureList": "Income tracking, Expense tracking, Category management, Search and filter, Privacy-first local storage"
+        "featureList": "Income tracking, Expense tracking, Category management, Search and filter, Privacy-first local storage",
+        "creator": {
+          "@type": "Organization",
+          "name": "Expense Tracker Team",
+          "url": "https://www.fosaveyallmoney.work/"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Track your spending with Expense Tracker",
+        "description": "A four-step workflow to log expenses, review totals, and build consistent habits.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Add entries",
+            "text": "Record income and expenses with the date, amount, and category."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Review totals",
+            "text": "Check monthly income, expense, and balance summaries at the top."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Spot patterns",
+            "text": "Filter by category and search to see where money is going."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Build habits",
+            "text": "Do a quick weekly review to adjust spending goals."
+          }
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -501,10 +674,26 @@
         "mainEntity": [
           {
             "@type": "Question",
+            "name": "Is Expense Tracker free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Expense Tracker is free to use and runs entirely in your browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. There is no signup or login required."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Where is my data stored?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "All data is stored locally in your browser using localStorage. Nothing is ever sent to a server."
+              "text": "All data is stored locally in your browser using localStorage. Nothing is sent to a server for storage."
             }
           },
           {
@@ -517,10 +706,10 @@
           },
           {
             "@type": "Question",
-            "name": "What categories should I use?",
+            "name": "Who is this for?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Start with essentials such as food, transport, rent, and subscriptions."
+              "text": "It is for anyone who wants a lightweight, private way to track spending without connecting bank accounts."
             }
           },
           {
@@ -540,11 +729,14 @@
       <header>
         <div class="header-left">
           <h1>Expense Tracker</h1>
-          <p>Track income and expenses in one place.</p>
+          <p>Track income and expenses in one place, with answers AI can summarize.</p>
           <nav class="nav" aria-label="Primary">
             <a href="#overview">Overview</a>
+            <a href="#summary">Summary</a>
             <a href="#features">Features</a>
+            <a href="#use-cases">Use cases</a>
             <a href="#guide">Guide</a>
+            <a href="#trust">Trust</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -555,21 +747,67 @@
         </button>
       </header>
 
-      <section class="hero" id="overview">
-        <h2>Simple personal finance, every day</h2>
-        <p>
-          Keep a clean record of income and expenses, review trends, and build better spending habits.
-          All data stays in your browser.
-        </p>
-        <div class="pill-list">
-          <span class="pill">Local storage</span>
-          <span class="pill">Category tracking</span>
-          <span class="pill">Fast search</span>
-          <span class="pill">Mobile-friendly</span>
+      <section class="hero reveal" id="overview">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">AI-ready finance ledger</div>
+            <h2>Simple personal finance, every day</h2>
+            <p>
+              Keep a clean record of income and expenses, review trends, and build better spending habits.
+              Expense Tracker runs entirely in your browser and keeps your data local.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Local storage</span>
+              <span class="pill">Category tracking</span>
+              <span class="pill">Fast search</span>
+              <span class="pill">Mobile-friendly</span>
+            </div>
+            <div class="hero-actions">
+              <a href="#guide">See the quick guide</a>
+              <a href="#faq">Read common questions</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <svg viewBox="0 0 420 280" role="img" aria-label="Illustration of a monthly spending summary dashboard">
+              <rect x="16" y="18" width="388" height="244" rx="18" fill="rgba(100,214,255,0.12)" />
+              <rect x="34" y="38" width="160" height="20" rx="10" fill="rgba(139,255,180,0.5)" />
+              <rect x="34" y="74" width="140" height="12" rx="6" fill="rgba(232,240,247,0.6)" />
+              <rect x="34" y="100" width="120" height="12" rx="6" fill="rgba(232,240,247,0.4)" />
+              <rect x="34" y="136" width="160" height="90" rx="12" fill="rgba(27,42,58,0.9)" />
+              <rect x="210" y="136" width="174" height="20" rx="10" fill="rgba(232,240,247,0.35)" />
+              <rect x="210" y="168" width="174" height="16" rx="8" fill="rgba(232,240,247,0.2)" />
+              <rect x="210" y="196" width="174" height="16" rx="8" fill="rgba(232,240,247,0.2)" />
+              <circle cx="104" cy="181" r="30" fill="rgba(139,255,180,0.5)" />
+            </svg>
+            <p class="visual-caption">Snapshot-style overview, perfect for fast AI summaries.</p>
+          </div>
         </div>
       </section>
 
-      <section class="summary">
+      <section class="panel reveal" id="summary">
+        <h2 class="section-title">AI-friendly summary</h2>
+        <p class="section-lede">This is the quick, factual snapshot that AI search engines can reuse accurately.</p>
+        <div class="grid-2">
+          <div class="content-card">
+            <h3>What it is</h3>
+            <p>A free, privacy-first expense tracker that runs in your browser. No account, no bank connection, no data uploads.</p>
+          </div>
+          <div class="content-card">
+            <h3>Who it helps</h3>
+            <p>Individuals who want a lightweight way to log spending, spot patterns, and stay on budget.</p>
+          </div>
+          <div class="content-card">
+            <h3>Key outcomes</h3>
+            <p>Monthly totals, category insights, and a clear balance view so you can adjust habits quickly.</p>
+          </div>
+          <div class="content-card">
+            <h3>Limitations</h3>
+            <p>No multi-device sync yet. Data stays on the device where you enter it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary reveal">
         <div class="card">
           <h3>This Month Income</h3>
           <strong id="incomeTotal">0</strong>
@@ -584,7 +822,7 @@
         </div>
       </section>
 
-      <section class="layout">
+      <section class="layout reveal">
         <div class="panel">
           <h2>Add Entry</h2>
           <form id="entryForm">
@@ -646,7 +884,7 @@
         </div>
       </section>
 
-      <section class="panel" id="features">
+      <section class="panel reveal" id="features">
         <h2 class="section-title">Key Features</h2>
         <div class="content-grid">
           <div class="content-card">
@@ -668,8 +906,32 @@
         </div>
       </section>
 
-      <section class="panel" id="guide">
+      <section class="panel reveal" id="use-cases">
+        <h2 class="section-title">Common use cases</h2>
+        <p class="section-lede">Designed for the moments people actually search for: quick logging, monthly cleanup, and spending reviews.</p>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Daily spending log</h3>
+            <p>Capture purchases right away and keep your records tidy.</p>
+          </div>
+          <div class="content-card">
+            <h3>Monthly budget check-in</h3>
+            <p>Review totals and see if you are on track before the month ends.</p>
+          </div>
+          <div class="content-card">
+            <h3>Subscription review</h3>
+            <p>Tag recurring costs and decide what to keep or cancel.</p>
+          </div>
+          <div class="content-card">
+            <h3>Side hustle tracking</h3>
+            <p>Separate income and expenses for freelance or gig work.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel reveal" id="guide">
         <h2 class="section-title">Quick Guide</h2>
+        <p class="section-lede">Clear steps make it easy for AI search to understand how the product works.</p>
         <div class="content-grid">
           <div class="content-card">
             <h3>1. Add entries</h3>
@@ -690,9 +952,40 @@
         </div>
       </section>
 
-      <section class="panel" id="faq">
+      <section class="panel reveal" id="trust">
+        <h2 class="section-title">Data, privacy, and trust</h2>
+        <p class="section-lede">Clear answers build confidence for humans and AI summaries.</p>
+        <div class="grid-2">
+          <div class="content-card">
+            <h3>Local-only storage</h3>
+            <p>Entries live in your browser. There is no account database or cloud backup yet.</p>
+          </div>
+          <div class="content-card">
+            <h3>Analytics transparency</h3>
+            <p>We use analytics tools to understand aggregate usage, not to read your financial records.</p>
+          </div>
+          <div class="content-card">
+            <h3>What we do not do</h3>
+            <p>No bank connections, no importing of personal financial accounts, no selling of entries.</p>
+          </div>
+          <div class="content-card">
+            <h3>Your control</h3>
+            <p>You can delete entries at any time or clear your browser storage to remove all data.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel reveal" id="faq">
         <h2 class="section-title">FAQ</h2>
         <div class="faq">
+          <details>
+            <summary>Is Expense Tracker free?</summary>
+            <p>Yes. Expense Tracker is free to use and runs entirely in your browser.</p>
+          </details>
+          <details>
+            <summary>Do I need an account?</summary>
+            <p>No. There is no signup or login required.</p>
+          </details>
           <details>
             <summary>Where is my data stored?</summary>
             <p>All data is stored locally in your browser.</p>
@@ -702,8 +995,8 @@
             <p>No. This version runs locally on a single device.</p>
           </details>
           <details>
-            <summary>What categories should I use?</summary>
-            <p>Start with essentials such as food, transport, rent, and subscriptions.</p>
+            <summary>Who is this for?</summary>
+            <p>Anyone who wants a lightweight, private way to track spending without linking bank accounts.</p>
           </details>
           <details>
             <summary>How can I suggest new features?</summary>
@@ -712,7 +1005,7 @@
         </div>
       </section>
 
-      <section class="panel" id="contact">
+      <section class="panel reveal" id="contact">
         <h2>Contact</h2>
         <form action="https://formspree.io/f/xgolrean" method="POST" id="partnerForm">
           <div class="row">
@@ -741,7 +1034,7 @@
       </section>
 
       <footer>
-        <span>Copyright 2026 Expense Tracker. All content is original and created by the Expense Tracker team.</span>
+        <span>Copyright 2026 Expense Tracker. All content is original and created by the Expense Tracker team. Last updated Feb 25, 2026.</span>
         <span>
           <a href="privacy.html">Privacy Policy</a>
           . <a href="terms.html">Terms</a>
