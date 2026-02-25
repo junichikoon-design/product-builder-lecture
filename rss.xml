@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Expense Tracker Updates</title>
+    <link>https://www.fosaveyallmoney.work/</link>
+    <description>Product and content updates for Expense Tracker.</description>
+    <language>en</language>
+    <item>
+      <title>Site updates</title>
+      <link>https://www.fosaveyallmoney.work/</link>
+      <description>Latest updates to the Expense Tracker site.</description>
+    </item>
+  </channel>
+</rss>
