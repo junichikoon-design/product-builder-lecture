@@ -297,6 +297,130 @@
           grid-template-columns: 1fr;
         }
       }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        font-size: 14px;
+      }
+
+      .nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .nav a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        display: grid;
+        gap: 10px;
+        padding: 22px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(100, 214, 255, 0.12), rgba(139, 255, 180, 0.08));
+        border: 1px solid var(--border);
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(100, 214, 255, 0.12);
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .section-title {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+
+      .content-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .content-card {
+        background: var(--panel-2);
+        border-radius: 14px;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+      }
+
+      .content-card h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+
+      .content-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 13px;
+      }
+
+      .faq {
+        display: grid;
+        gap: 12px;
+      }
+
+      .faq details {
+        background: var(--panel-2);
+        border-radius: 12px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+      }
+
+      .faq summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+        color: var(--muted);
+        font-size: 13px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      footer a {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      footer a:hover {
+        color: var(--text);
+      }
+
     </style>
   </head>
   <body>
@@ -311,6 +435,21 @@
           <span id="themeLabel">다크 모드</span>
         </button>
       </header>
+
+
+      <section class="hero" id="overview">
+        <h2>???? ???? ??? ???</h2>
+        <p>
+          ???? ??? ??? ??? ???? ???? ?? ??? ??? ? ??? ???.
+          ? ???? ?? ??? ??, ??, ??? ??? ????, ???? ?????? ?????.
+        </p>
+        <div class="pill-list">
+          <span class="pill">?? ??</span>
+          <span class="pill">???? ??</span>
+          <span class="pill">?? ??</span>
+          <span class="pill">??? ??</span>
+        </div>
+      </section>
 
       <section class="summary">
         <div class="card">
@@ -446,6 +585,16 @@
         </form>
       </section>
     </div>
+
+
+      <footer>
+        <span>? 2026 ???. ?? ???? ???? ??? ?? ?? ??????.</span>
+        <span>
+          <a href="privacy.html">????????</a>
+          ? <a href="terms.html">????</a>
+          ? <a href="about.html">??? ??</a>
+        </span>
+      </footer>
 
     <script>
       const storageKey = "ledgerEntries";
