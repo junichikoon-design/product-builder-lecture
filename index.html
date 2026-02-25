@@ -6,7 +6,11 @@
     <title>Expense Tracker - Personal Finance Ledger</title>
     <meta name="description" content="Track income and expenses, review monthly totals, and build better spending habits. All data stays in your browser." />
     <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="expense tracker, personal finance, budget planner, income tracker, spending tracker, money management, free finance app" />
     <link rel="canonical" href="https://www.fosaveyallmoney.work/" />
+    <link rel="alternate" type="application/rss+xml" title="Expense Tracker Updates" href="/rss.xml" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
     <meta property="og:title" content="Expense Tracker - Personal Finance Ledger" />
     <meta property="og:description" content="Track income and expenses, review monthly totals, and build better spending habits. All data stays in your browser." />
     <meta property="og:type" content="website" />
@@ -461,7 +465,73 @@
         "name": "Expense Tracker",
         "url": "https://www.fosaveyallmoney.work/",
         "description": "Track income and expenses, review monthly totals, and build better spending habits.",
-        "inLanguage": "en"
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.fosaveyallmoney.work/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Expense Tracker",
+        "url": "https://www.fosaveyallmoney.work/",
+        "description": "Track income and expenses, review monthly totals, and build better spending habits. All data stays in your browser.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": "Income tracking, Expense tracking, Category management, Search and filter, Privacy-first local storage"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where is my data stored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All data is stored locally in your browser using localStorage. Nothing is ever sent to a server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it sync across devices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This version runs locally on a single device. Your data stays private on that device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What categories should I use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with essentials such as food, transport, rent, and subscriptions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I suggest new features?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the contact form on the page with your ideas and we will review them."
+            }
+          }
+        ]
       }
     </script>
   </head>
